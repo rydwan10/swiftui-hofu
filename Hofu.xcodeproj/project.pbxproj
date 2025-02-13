@@ -29,20 +29,67 @@
 		5D993EFC2CE9C7EA00D8BA27 /* HofuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HofuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5D993F272CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "Hofu" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HofuTests/HofuTests.swift,
+				HofuUITests/HofuUITests.swift,
+				HofuUITests/HofuUITestsLaunchTests.swift,
+			);
+			target = 5D993EE12CE9C7E800D8BA27 /* Hofu */;
+		};
+		5D993F282CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "HofuTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HofuTests/HofuTests.swift,
+			);
+			target = 5D993EF12CE9C7EA00D8BA27 /* HofuTests */;
+		};
+		5D993F292CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "HofuUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HofuUITests/HofuUITests.swift,
+				HofuUITests/HofuUITestsLaunchTests.swift,
+			);
+			target = 5D993EFB2CE9C7EA00D8BA27 /* HofuUITests */;
+		};
+		5DA068A32D0F2DC8003AD55C /* Exceptions for "Hofu" folder in "Hofu" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5D993EE12CE9C7E800D8BA27 /* Hofu */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5D3F4DAC2D5CEF730084A231 /* Extension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		5D993EE42CE9C7E800D8BA27 /* Hofu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5DA068A32D0F2DC8003AD55C /* Exceptions for "Hofu" folder in "Hofu" target */,
+			);
 			path = Hofu;
 			sourceTree = "<group>";
 		};
-		5D993EF52CE9C7EA00D8BA27 /* HofuTests */ = {
+		5D993F192CE9C8E400D8BA27 /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HofuTests;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		5D993EFF2CE9C7EA00D8BA27 /* HofuUITests */ = {
+		5D993F1E2CE9C94700D8BA27 /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HofuUITests;
+			exceptions = (
+				5D993F272CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "Hofu" target */,
+				5D993F282CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "HofuTests" target */,
+				5D993F292CE9C94D00D8BA27 /* Exceptions for "Tests" folder in "HofuUITests" target */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +122,10 @@
 		5D993ED92CE9C7E800D8BA27 = {
 			isa = PBXGroup;
 			children = (
+				5D3F4DAC2D5CEF730084A231 /* Extension */,
+				5D993F1E2CE9C94700D8BA27 /* Tests */,
+				5D993F192CE9C8E400D8BA27 /* Resources */,
 				5D993EE42CE9C7E800D8BA27 /* Hofu */,
-				5D993EF52CE9C7EA00D8BA27 /* HofuTests */,
-				5D993EFF2CE9C7EA00D8BA27 /* HofuUITests */,
 				5D993EE32CE9C7E800D8BA27 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +156,10 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				5D3F4DAC2D5CEF730084A231 /* Extension */,
 				5D993EE42CE9C7E800D8BA27 /* Hofu */,
+				5D993F192CE9C8E400D8BA27 /* Resources */,
+				5D993F1E2CE9C94700D8BA27 /* Tests */,
 			);
 			name = Hofu;
 			packageProductDependencies = (
@@ -130,9 +181,6 @@
 			dependencies = (
 				5D993EF42CE9C7EA00D8BA27 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				5D993EF52CE9C7EA00D8BA27 /* HofuTests */,
-			);
 			name = HofuTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +200,6 @@
 			);
 			dependencies = (
 				5D993EFE2CE9C7EA00D8BA27 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5D993EFF2CE9C7EA00D8BA27 /* HofuUITests */,
 			);
 			name = HofuUITests;
 			packageProductDependencies = (
@@ -399,6 +444,9 @@
 				DEVELOPMENT_TEAM = BCLA727S8J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hofu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hofu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +476,9 @@
 				DEVELOPMENT_TEAM = BCLA727S8J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hofu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hofu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
