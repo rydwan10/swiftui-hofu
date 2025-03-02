@@ -12,7 +12,7 @@ struct HomeHero: View {
     var body: some View {
         VStack {
             ZStack {
-                Image("HeroHomeView") // Gambar yang ada di xcassets
+                Image("Sakura") // Gambar yang ada di xcassets
                     .resizable()
                     .frame(height: 390)
                     .clipShape(RoundedCorner(radius: 40, corners: [.bottomLeft, .bottomRight]))
@@ -31,7 +31,7 @@ struct HomeHero: View {
 //                    Spacer()/
                     HStack {
                         Text("\"Lorem Ipsum Dolor sit amet\"")
-                            .foregroundStyle(Color(hex: 0xFFFFFF))
+                            .foregroundStyle(Color(hex: 0xffb7d7))
                             .padding(.leading, 16)
 
                         Spacer()

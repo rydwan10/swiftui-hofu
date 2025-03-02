@@ -67,7 +67,7 @@ struct RegisterView: View {
                 maxHeight: .infinity,
                 alignment: .center
             ).background(.gray25)
-            .navigationBarBackButtonHidden(true)
+//            .navigationBarBackButtonHidden(true)
     }
 }
 

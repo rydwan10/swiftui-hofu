@@ -32,7 +32,7 @@ struct HomeCard: View {
 struct HomeCardItem: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Image("HeroHomeView")
+            Image("Sakura")
                 .resizable()
 //                .scaledToFill()
                 .frame(width: 128, height: 128)

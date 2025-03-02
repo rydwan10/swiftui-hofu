@@ -11,9 +11,9 @@ struct HofuLogo: View {
     
     var body: some View {
         HStack (alignment: .center, spacing: 0){
-            Text("Ho").font(.title).fontWeight(.bold).foregroundStyle(.white).underline()
-            Text("Fu").font(.title).fontWeight(.bold).foregroundStyle(.white)
-        }
+            Text("Ho").font(.title).fontWeight(.bold).underline()
+            Text("Fu").font(.title).fontWeight(.bold)
+        }.foregroundStyle(Color(hex: 0xffb7d7))
     }
 }
 

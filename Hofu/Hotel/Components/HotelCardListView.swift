@@ -16,33 +16,40 @@ struct HotelCardList: View {
     let rating: Double
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(alignment: .center, spacing: 16) {
             Image(image)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 80, height: 80)
+                .frame(width: 92, height: 92)
                 .cornerRadius(12)
                 .clipped()
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text(title).style(.textSm(.semiBold))
+            VStack(alignment: .leading, spacing: 0) {
+                Text(title)
+                    .style(.textMd(.semiBold))
+                
                 HStack (spacing: 0){
                     Text(city + ", ")
                         .style(.textXs(.regular))
                     Text(country)
                         .style(.textXs(.semiBold))
-                }
-                HStack(alignment: .center) {
-                    Text("Starts from")
-                        .style(.textXss(.semiBold))
-                        .foregroundStyle(.gray600)
-//                    Spacer()
-                    Text("Rp \(String(format: "%.2f", startingPrice))")
-                        .style(.textXs(.semiBold))
-                }
-                Text("\(String(rating))/5").style(.textXs(.semiBold))
+                }.padding(.bottom, 8)
+                Text("Starts from")
+                    .style(.textXs(.semiBold))
+                    .foregroundStyle(.gray600)
+                Text("Rp \(String(format: "%.2f", startingPrice))")
+                    .style(.textXs(.semiBold))
             }
             Spacer()
+            HStack (spacing: 4){
+                Image("ic_star")
+                    .resizable()
+                    .renderingMode(.template)
+                    .frame(width: 14, height: 14)
+                    .foregroundStyle(.warning400)
+                Text("\(String(rating))/5")
+                    .style(.textXs(.semiBold))
+            }
         }
         .padding(12)
         .background(Color.white)

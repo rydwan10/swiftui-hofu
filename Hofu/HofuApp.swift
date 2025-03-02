@@ -50,7 +50,7 @@ struct HofuApp: App {
                                 ).navigationBarTitleDisplayMode(.inline) // Menentukan tampilan title secara inline
                                     .toolbar {
                                         ToolbarItem(placement: .principal) {
-                                            Text("")
+                                            Text(name)
                                                 .font(.headline)
                                                 .foregroundColor(.primary)
                                         }

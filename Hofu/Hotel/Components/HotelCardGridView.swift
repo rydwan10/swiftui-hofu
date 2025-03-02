@@ -33,52 +33,73 @@ struct HotelCardGrid: View {
             Image(image)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 166)
+                .frame(height: 180)
                 .clipped()
                 .cornerRadius(28)
-            VStack(alignment: .leading) {
-                Text(title).style(.textSm(.semiBold))
+            
+            VStack(alignment: .leading, spacing: 0) {
+                Text(title)
+                    .style(.textMd(.semiBold))
+
                 HStack(alignment: .center, spacing: 0) {
                     Text(city + ", ")
-                        .style(.textXss(.regular))
+                        .style(.textXs(.regular))
                     Text(country)
-                        .style(.textXss(.semiBold))
-                }
+                        .style(.textXs(.semiBold))
+                }.padding(.bottom, 8)
+
+                HStack(spacing: 4) {
+                    Image("ic_star")
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 14, height: 14)
+                        .foregroundStyle(.warning400)
+
+                    Text("\(String(rating))/5")
+                        .style(.textXs(.semiBold))
+                }.padding(.bottom, 8)
+
                 HStack(spacing: 2) {
                     if isHaveShop {
-                        HofuBadge(type: .info, title: "Shop", leadingIcon: Image("ic_shopping_bag"))
+                        HofuBadge(
+                            type: .info,
+                            title: "Shop",
+                            leadingIcon: Image("ic_shopping_bag")
+                        )
                     }
                     if isHofuPartner {
-                        HofuBadge(type: .warning, title: "Hofu Partner", leadingIcon: Image("ic_shopping_bag"))
+                        HofuBadge(
+                            type: .warning,
+                            title: "Hofu Partner",
+                            leadingIcon: Image("ic_shopping_bag")
+                        )
                     }
-                    
-                }.frame(height: 16)
-                
+
+                }.frame(height: 16).padding(.bottom, 8)
+
                 HStack(spacing: 0) {
                     HStack(alignment: .center) {
                         VStack(alignment: .leading) {
-                            Text("Starts from").style(.tiny(.semiBold)).foregroundStyle(.gray600)
+                            Text("Starts from").style(.textXs(.semiBold)).foregroundStyle(.gray600)
                             Text("Rp \(String(format: "%.2f", startingPrice))")
-                                .style(.textXss(.semiBold))
+                                .style(.textXs(.semiBold))
                         }
-                        Spacer()
-                        Text("\(String(rating))/5").style(.tiny(.semiBold))
                     }
                 }
             }
-                .padding(.horizontal, 12)
-                    .padding(.top, 6)
-                    .padding(.bottom, 14)
+            .padding(.horizontal, 12)
+            .padding(.top, 6)
+            .padding(.bottom, 14)
         }
 //        .frame(width: .infinity)
-            .background(Color.white)
-            .cornerRadius(24)
-            .shadow(
-                color: Color(.Gray600, opacity: 0.1),
-                radius: 8,
-                x: 0,
-                y: 4
-            ).padding(.bottom, 16)
+        .background(Color.white)
+        .cornerRadius(24)
+        .shadow(
+            color: Color(.Gray600, opacity: 0.1),
+            radius: 8,
+            x: 0,
+            y: 4
+        ).padding(.bottom, 16)
     }
 }
 

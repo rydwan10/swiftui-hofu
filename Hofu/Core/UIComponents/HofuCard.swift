@@ -12,7 +12,7 @@ struct HofuCard<Content: View>: View {
     let radius: CGFloat
     
     init(
-        radius: CGFloat = 8,
+        radius: CGFloat = 28,
         @ViewBuilder content: () -> Content
     ) {
         self.radius = radius
