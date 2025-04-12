@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct HotelAmenitiesCard: View {
     struct Amenity: Identifiable {
         let id = UUID()
@@ -15,18 +17,22 @@ struct HotelAmenitiesCard: View {
     }
 
     let amenities: [Amenity]
-    var onSeeMorePressed: () -> Void
+    @State private var isShowMoreAmenities = false
 
     init(
         amenities: [Amenity] = [
             Amenity(icon: "ic_restaurant_menu", title: "Restaurant"),
             Amenity(icon: "ic_wifi_outline", title: "Free Wi-Fi"),
-            Amenity(icon: "ic_sunrise_outline", title: "Free Breakfast")
-        ],
-        onSeeMorePressed: @escaping () -> Void = { print("See more amenities pressed") }
+            Amenity(icon: "ic_sunrise_outline", title: "Free Breakfast"),
+            Amenity(icon: "ic_restaurant_menu", title: "Swimming Pool"),
+            Amenity(icon: "ic_restaurant_menu", title: "Spa Services"),
+            Amenity(icon: "ic_restaurant_menu", title: "Fitness Center"),
+            Amenity(icon: "ic_restaurant_menu", title: "Fitness Center"),
+            Amenity(icon: "ic_restaurant_menu", title: "Fitness Center"),
+            Amenity(icon: "ic_restaurant_menu", title: "Fitness Center")
+        ]
     ) {
         self.amenities = amenities
-        self.onSeeMorePressed = onSeeMorePressed
     }
 
     var body: some View {
@@ -36,24 +42,53 @@ struct HotelAmenitiesCard: View {
                     .style(.textSm(.semiBold))
                     .padding(.bottom, 8)
 
-                HStack {
-                    ForEach(amenities) { amenity in
-                        Spacer()
-                        VStack {
-                            Image(amenity.icon)
-                                .padding(.bottom, 2)
-                            Text(amenity.title)
-                                .style(.textXs(.regular))
-                                .foregroundStyle(.gray500)
+                if !isShowMoreAmenities {
+                    HStack(spacing: 16) {
+                        ForEach(Array(amenities.prefix(3))) { amenity in
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Image(amenity.icon)
+                                        .padding(.bottom, 2)
+                                    Text(amenity.title)
+                                        .style(.textXs(.regular))
+                                        .foregroundStyle(.gray500)
+                                }
+                                Spacer()
+                            }
                         }
                     }
-                    Spacer()
-                }.padding(.bottom, 16)
+                    .padding(.bottom, 16)
+                }
 
-                Button(action: onSeeMorePressed) {
+                if isShowMoreAmenities {
+                    LazyVGrid(
+                        columns: Array(
+                            repeating: GridItem(.flexible()),
+                            count: 3
+                        ),
+                        spacing: 8
+                    ) {
+                        ForEach(amenities) { amenity in
+                            HStack {
+                                Image(amenity.icon)
+                                    .padding(.trailing, 4)
+                                Text(amenity.title)
+                                    .style(.textXs(.regular))
+                                    .foregroundStyle(.gray)
+                            }
+                        }
+                    }.padding(.bottom, 16)
+                }
+
+                Button(action: {
+                    withAnimation {
+                        isShowMoreAmenities.toggle()
+                    }
+                }) {
                     HStack(alignment: .center) {
                         Spacer()
-                        Text("See more amenities")
+                        Text(isShowMoreAmenities ? "Show less" : "See more amenities")
                             .style(.textXs(.semiBold))
                             .foregroundStyle(.brand600)
                         Spacer()
@@ -63,6 +98,11 @@ struct HotelAmenitiesCard: View {
         }
     }
 }
+
+#Preview {
+    HotelAmenitiesCard()
+}
+
 #Preview {
     HotelAmenitiesCard()
 }

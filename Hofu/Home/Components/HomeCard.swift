@@ -12,9 +12,10 @@ struct HomeCard: View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Discover")
-//                    .font(.inter(size: 20, weight: .bold))
-                    .underline(true, color: .warning500)
-//                    .bold()
+                    .style(.textLg(.semiBold))
+                    //                    .font(.inter(size: 20, weight: .bold))
+//                    .underline(true, color: .warning500)
+                //                    .bold()
             }.padding(.horizontal, 16)
 
             ScrollView(.horizontal, showsIndicators: false) {

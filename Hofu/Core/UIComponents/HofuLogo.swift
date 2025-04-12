@@ -13,7 +13,9 @@ struct HofuLogo: View {
         HStack (alignment: .center, spacing: 0){
             Text("Ho").font(.title).fontWeight(.bold).underline()
             Text("Fu").font(.title).fontWeight(.bold)
-        }.foregroundStyle(Color(hex: 0xffb7d7))
+        }
+//        .foregroundStyle(Color(hex: 0xffb7d7))
+        .foregroundStyle(Color(.white))
     }
 }
 

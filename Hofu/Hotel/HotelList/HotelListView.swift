@@ -15,76 +15,83 @@ struct HotelListView: View {
     @State private var isListView: Bool = false // State untuk mode grid atau list
 
     var body: some View {
-        VStack {
-            ScrollView {
-                HStack {
-                    HofuTextField(
-                        placeholder: "Search Hotel...",
-                        text: $testText,
-                        leadingIcon: Image("ic_search_outline"),
-                        onLeadingIconTap: { print("Leading icon tapped") },
-                        onTrailingIconTap: { print("Trailing icon tapped") },
-                        onChange: { text in
-                            print("Text changed: \(text)")
-                        }
-                    )
-                    Spacer()
-                    HStack {
-                        HofuCircleButton(icon: { Image("ic_filter_outline") })
-                            .sheet(isPresented: $isSheetPresented) {
-                                HotelListFilterView(
-                                    selectedFilter: $selectedFilter,
-                                    isSheetPresented: $isSheetPresented
-                                )
-                                .presentationDetents([.fraction(0.40)])
-                                .presentationDragIndicator(.visible)
-                            }.onTapGesture {
-                                isSheetPresented.toggle()
-                            }
-                        HofuCircleButton(icon: { Image("ic_list_outline") })
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.3)) { // Animasi transisi
-                                    isListView.toggle()
-                                }
-                            }
+        ScrollView {
+            HStack {
+                HofuTextField(
+                    placeholder: "Search Hotel...",
+                    text: $testText,
+                    leadingIcon: Image("ic_search_outline"),
+                    onLeadingIconTap: { print("Leading icon tapped") },
+                    onTrailingIconTap: { print("Trailing icon tapped") },
+                    onChange: { text in
+                        print("Text changed: \(text)")
                     }
-                }.padding(.bottom)
-                LazyVGrid(
-                    columns: isListView ? [GridItem(.flexible())] : [GridItem(.flexible()), GridItem(.flexible())],
-                    spacing: isListView ? 8 : 2
-                ) {
-                    ForEach(1 ... 30, id: \.self) { index in
-                        if(isListView) {
-                            HotelCardList(
-                                image: "Sakura",
-                                title: "Hotel \(index)",
-                                city: "City \(index)",
-                                country: "Country \(index)",
-                                startingPrice: Double(100_000),
-                                rating: Double.random(in: 3.0 ... 5.0).rounded()
-                            ).onTapGesture {
-                                routeManager.navigate(to: .hotelDetail(id: index, name: "Hotel \(index)"))
+                )
+                Spacer()
+                HStack {
+                    HofuCircleButton(icon: { Image("ic_filter_outline") })
+                        .sheet(isPresented: $isSheetPresented) {
+                            HotelListFilterView(
+                                selectedFilter: $selectedFilter,
+                                isSheetPresented: $isSheetPresented
+                            )
+                            .presentationDetents([.fraction(0.40)])
+                            .presentationDragIndicator(.visible)
+                        }.onTapGesture {
+                            isSheetPresented.toggle()
+                        }
+                    HofuCircleButton(icon: { Image("ic_list_outline") })
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.3)) { // Animasi transisi
+                                isListView.toggle()
                             }
-                        } else {
-                            HotelCardGrid(
-                                image: "Sakura",
-                                title: "Hotel \(index)",
-                                city: "City \(index)",
-                                country: "Country \(index)",
-                                isHaveShop: index % 2 == 0,
-                                isHofuPartner: index % 3 == 0,
-                                startingPrice: Double(100_000),
-                                rating: Double.random(in: 3.0 ... 5.0).rounded()
-                            ).onTapGesture {
-                                routeManager.navigate(to: .hotelDetail(id: index, name: "Hotel \(index)"))
-                            }
+                        }
+                }
+            }.padding(.bottom)
+            LazyVGrid(
+                columns: isListView ? [GridItem(.flexible())] : [GridItem(.flexible()), GridItem(.flexible())],
+                spacing: isListView ? 8 : 2
+            ) {
+                ForEach(1 ... 30, id: \.self) { index in
+                    if isListView {
+                        HotelCardList(
+                            image: "Sakura",
+                            title: "Hotel \(index)",
+                            city: "City \(index)",
+                            country: "Country \(index)",
+                            startingPrice: Double(100_000),
+                            rating: Double.random(in: 3.0 ... 5.0).rounded()
+                        ).onTapGesture {
+                            routeManager.navigate(to: .hotelDetail(id: index, name: "Hotel \(index)"))
+                        }
+                    } else {
+                        HotelCardGrid(
+                            image: "Sakura",
+                            title: "Hotel \(index)",
+                            city: "City \(index)",
+                            country: "Country \(index)",
+                            isHaveShop: index % 2 == 0,
+                            isHofuPartner: index % 3 == 0,
+                            startingPrice: Double(100_000),
+                            rating: Double.random(in: 3.0 ... 5.0).rounded()
+                        ).onTapGesture {
+                            routeManager.navigate(to: .hotelDetail(id: index, name: "Hotel \(index)"))
                         }
                     }
                 }
             }
-            .scrollClipDisabled()
-            .scrollIndicators(.hidden)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Hotel")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
+        }
+        .scrollIndicators(.hidden)
+        .scrollClipDisabled()
+        .clipped()
         .padding()
         .background(.gray25)
     }

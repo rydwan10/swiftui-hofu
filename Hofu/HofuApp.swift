@@ -36,31 +36,19 @@ struct HofuApp: App {
                                 Text("Settings Screen")
                             case .hotelList:
                                 HotelListView()
-                                    .navigationBarTitleDisplayMode(.inline) // Menentukan tampilan title secara inline
-                                    .toolbar {
-                                        ToolbarItem(placement: .principal) {
-                                            Text("Hotel")
-                                                .font(.headline)
-                                                .foregroundColor(.primary)
-                                        }
-                                    }
+                                   
                             case .hotelDetail(let id, let name):
                                 HotelDetailView(
                                     id: id, name: name
-                                ).navigationBarTitleDisplayMode(.inline) // Menentukan tampilan title secara inline
-                                    .toolbar {
-                                        ToolbarItem(placement: .principal) {
-                                            Text(name)
-                                                .font(.headline)
-                                                .foregroundColor(.primary)
-                                        }
-                                    }
+                                )
                             case .login:
                                 LoginView()
                             case .register:
                                 RegisterView()
                             case .home:
                                 ContentView()
+                            case .checkoutRoom:
+                                RoomCheckoutView(formRoute: true)
                         }
                     }
 

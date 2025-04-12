@@ -9,11 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 HomeHero()
                 Spacer().frame(height: 24)
-                HomeMenu()
+                HomeMenu().padding(.bottom, 12)
                 Spacer()
                 HomeCard()
                 Spacer()

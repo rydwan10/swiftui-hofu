@@ -10,13 +10,16 @@ import SwiftUI
 struct HofuCard<Content: View>: View {
     let content: Content
     let radius: CGFloat
+    let padding: EdgeInsets
     
     init(
         radius: CGFloat = 28,
+        padding: EdgeInsets = EdgeInsets(all: 16),
         @ViewBuilder content: () -> Content
     ) {
         self.radius = radius
         self.content = content()
+        self.padding = padding
     }
     
     private var shadowColor: Color {
@@ -26,7 +29,7 @@ struct HofuCard<Content: View>: View {
     
     var body: some View {
         content
-            .padding(16)
+            .padding(padding)
             .background(Color.white)
             .cornerRadius(radius)
             // Shadow Layer 1 (bottom layer)

@@ -23,11 +23,7 @@ struct ContentView: View {
             VStack {
                 Text("Bookmark Page")
             }.padding().tag(4).toolbar(.hidden, for: .tabBar)
-            VStack {
-                Text("Logout").onTapGesture {
-                    authManager.logout()
-                }
-            }.padding().tag(5).toolbar(.hidden, for: .tabBar)
+            ProfileView().tag(5).toolbar(.hidden, for: .tabBar)
         }.overlay(alignment: .bottom) {
             ContentViewTab(selectedTab: $selectedTab)
         }
@@ -35,5 +31,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(AuthManager())
+    ContentView()
+        .environmentObject(AuthManager())
+        .environmentObject(RouteManager())
 }

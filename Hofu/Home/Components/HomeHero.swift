@@ -31,7 +31,8 @@ struct HomeHero: View {
 //                    Spacer()/
                     HStack {
                         Text("\"Lorem Ipsum Dolor sit amet\"")
-                            .foregroundStyle(Color(hex: 0xffb7d7))
+//                            .foregroundStyle(Color(hex: 0xffb7d7))
+                            .foregroundStyle(.white)
                             .padding(.leading, 16)
 
                         Spacer()

@@ -6,9 +6,9 @@
 //
 import SwiftUI
 
-// MARK: - HotelDetailView
-
 struct HotelDetailView: View {
+    @EnvironmentObject var routeManager: RouteManager
+
     let id: Int
     let name: String
     let image: String
@@ -64,6 +64,7 @@ struct HotelDetailView: View {
                 .padding(.horizontal, 16)
             }
         }
+        .navigationBarTitleDisplayMode(.inline) // Menentukan tampilan title secara inline
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
@@ -71,11 +72,16 @@ struct HotelDetailView: View {
         )
         .background(.gray50)
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(name)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
             ToolbarItemGroup(placement: .bottomBar) {
                 HotelPriceFooter(
                     price: price,
                     onCheckoutPressed: {
-                        print("Checkout pressed for hotel \(id)")
+                        routeManager.navigate(to: .checkoutRoom)
                     }
                 )
             }
@@ -85,61 +91,49 @@ struct HotelDetailView: View {
     }
 }
 
+#Preview("HotelDetailView Preview") {
+    HotelDetailView(
+        id: 1,
+        name: "Sakura Terrace",
+        image: "Sakura",
+        price: "Rp120.000",
+        description: "Experience luxury in the heart of Jakarta. Our hotel offers premium amenities and exceptional service."
+    ).environmentObject(RouteManager())
+}
 
+#Preview("HotelTitleCard Preview") {
+    HotelTitleCard(
+        name: "Sakura Terrace",
+        location: ("Setiabudi", "South Jakarta"),
+        rating: "4.8/5"
+    )
+    .padding()
+}
 
+#Preview("HotelAmenitiesCard Preview") {
+    HotelAmenitiesCard()
+        .padding()
+}
 
-struct HotelDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            // Full HotelDetailView preview
-            HotelDetailView(
-                id: 1,
-                name: "Sakura Terrace",
-                image: "Sakura",
-                price: "Rp120.000",
-                description: "Experience luxury in the heart of Jakarta. Our hotel offers premium amenities and exceptional service."
-            )
-            .previewDisplayName("Hotel Detail - Full View")
+#Preview("RoomCard Preview") {
+    RoomCard(info: RoomInfo(
+        id: 1,
+        title: "Deluxe Suite",
+        price: "Rp250.000",
+        amenities: ["ic_tv_outline", "ic_double_bed_outline", "ic_refrigerator_outline", "ic_wifi_outline", "ic_sunrise_outline"]
+    ))
+    .padding()
+}
 
-            // Isolated Component Previews
-            HotelTitleCard(
-                name: "Sakura Terrace",
-                location: ("Setiabudi", "South Jakarta"),
-                rating: "4.8/5"
-            )
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Hotel Title Card")
+#Preview("RoomDetailView Preview") {
+    @Previewable @State var isShowingSheetDetailRoom = false
+    return RoomDetailView(roomInfo: RoomInfo(
+        id: 2,
+        title: "Executive Suite",
+        price: "Rp350.000"
+    ), isShowingSheetDetailRoom: $isShowingSheetDetailRoom)
+}
 
-            HotelAmenitiesCard()
-                .padding()
-                .previewLayout(.sizeThatFits)
-                .previewDisplayName("Amenities Card")
-
-            // Room Card Preview
-            RoomCard(info: RoomInfo(
-                id: 1,
-                title: "Deluxe Suite",
-                price: "Rp250.000",
-                amenities: ["ic_tv_outline", "ic_double_bed_outline", "ic_refrigerator_outline", "ic_wifi_outline", "ic_sunrise_outline"]
-            ))
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Room Card")
-
-            // Room Detail Sheet Preview
-            RoomDetailSheetView(roomInfo: RoomInfo(
-                id: 2,
-                title: "Executive Suite",
-                price: "Rp350.000"
-            ))
-            .previewDisplayName("Room Detail Sheet")
-
-            // Shop View Preview
-            ShopView()
-                .frame(height: 500)
-                .previewLayout(.sizeThatFits)
-                .previewDisplayName("Shop View")
-        }
-    }
+#Preview("RoomShopView Preview") {
+    RoomShopView()
 }

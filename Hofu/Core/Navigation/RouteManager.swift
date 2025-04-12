@@ -17,6 +17,7 @@ enum AppRoute: Codable, Hashable {
     case hotelList
     case hotelDetail(id: Int, name: String)
     case register
+    case checkoutRoom
 
 //    // Contoh rute bersarang jika diperlukan
 //    case nested(NestedRoute)
